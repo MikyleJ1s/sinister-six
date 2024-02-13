@@ -1,0 +1,4 @@
+root - INFO - Info Message
+root - WARNING - Warning Message
+root - ERROR - Error Message
+root - CRITICAL - Critical Message

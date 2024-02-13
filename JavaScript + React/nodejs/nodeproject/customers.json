@@ -1,0 +1,6 @@
+[    
+    {"customer_name": "George", "customer_id": 1}, 
+    {"customer_name": "Josh", "customer_id": 2}, 
+    {"customer_name": "Alice", "customer_id": 3}, 
+    {"customer_name": "Candy", "customer_id": 4}
+]

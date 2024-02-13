@@ -1,0 +1,16 @@
+module.exports = (app) => {
+    const insuranceController = require('../controller/insurance.controller.js')
+
+    // create a new employee ... 
+    app.post('/insertinsurance', insuranceController.insertInsurance)
+    // select all employees
+    app.get('/getallinsurances', insuranceController.selectAllInsurances)
+    // select employee by id ...
+    app.get('/getinsurance/:i_id', insuranceController.selectInsurance)
+    // select employee by name ...
+    app.get('/getinsurancename/:i_name', insuranceController.selectInsuranceWithName)
+    // update employee ...
+    app.put('/updateinsurance/:i_id', insuranceController.updateInsurance)
+    // delete employee ...
+    app.delete('/deleteinsurance/:i_id', insuranceController.deleteInsurance)
+}

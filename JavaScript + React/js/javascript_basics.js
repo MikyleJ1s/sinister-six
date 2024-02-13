@@ -1,0 +1,3 @@
+// output statements in javascript ... 
+
+console.log("Using console.log from the javascript file")

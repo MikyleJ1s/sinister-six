@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <script>
+            console.log("Using html...")
+            var x = 10; var y = 4
+            operators = {'+': (x+y),'-': (x-y),'*': (x*y),'/': (x/y), '%': (x%y)}
+            for (var i in operators){
+                if (y == 0 && (i == '/' || i == '%')){
+                    console.log(x + i + y + ' is not possible')
+                }
+                else{
+                    console.log(x + i + y + '=' + operators[i])
+                }
+                
+            }
+        </script>
+        <script src="calculator_example.js" type="text/javascript"></script>
+    </head>
+    <body>
+        
+    </body>
+</html>

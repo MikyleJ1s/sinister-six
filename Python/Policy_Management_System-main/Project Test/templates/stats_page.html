@@ -1,0 +1,116 @@
+<html>
+  <head>   
+    <title> Sanlam Policy Manager </title> 
+    <img src = "static/logo.png" alt = "Sanlam Logo" style="height: 100px; width: 300px; padding-left: 10px"/>
+  </head>
+</html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type = "text/javascript" src = {{url_for('static', filename = 'functions.js')}}></script>
+    <link rel= "stylesheet" href="{{url_for("static", filename = "style.css")}}">
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawSeriesChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+                ['Insurance', 'Amount'],
+            
+                {% for key, value in data %}
+                    ['{{ key }}', {{ value }}],
+            {% endfor %}
+        ]);
+ 
+        var options = {
+          title: 'Amount Spent on Each Insurance',
+          pieStartAngle: 90, 
+          legend: 'none', 
+          chartArea: {width: 350, height: 350, }, 
+          colors: ['#0A2647', '#144272', '#205295', '#2C74B3', '#191970', '#000080', '#4682B4', '#0000FF', '#6495ED']
+
+        };
+ 
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+
+
+
+    function drawSeriesChart()
+        {
+          var data = google.visualization.arrayToDataTable([
+             ['Time', 'Amount Spent', { role: 'annotation'}],
+             {% for i in info %}
+                ['{{ i[0] }}/{{i[1]}}', {{ i[2] }}, 'R{{i[2]}}'],
+        {% endfor %}
+          ]);
+
+          var options = {title: 'Monthly Expenses', 
+        legend: 'none', hAxis: {title: "Month/Year"},vAxis: { textPosition: 'none' },};  
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+          chart.draw(data, options);
+       }
+   
+
+    </script>
+</head>
+
+<body style=  "background-color: #0074c9; ">
+  
+<ul>
+<div class="tab">
+  <form action = "/fetch_policies" method="post">
+  <button><i class="fa fa-folder-o"></i></button>
+  </form>
+  <form action = "/payments" method="post">
+  <button><i class="fa fa-credit-card"></i></button>
+</form>
+
+  <button onclick="opentab(event, 'Stats')" id="defaultOpen"><i class="fa fa-bar-chart"></i></button>
+
+
+  <br><br>  <br><br><br><br>  <br><br><br><br>  <br><br><br><br>  <br><br><br>
+   <form action = "/settings" method="post"> 
+  <button><i class="fa fa-user-o"></i></button>
+</form>
+
+</div>
+
+
+
+
+<div id="Stats" class="tabcontent">
+<h3>USER STATISTICS</h3>
+<div class="polcontent">
+<div class = "graphs">
+  <div id="piechart" style="width: 100%; height: 90%;"></div>
+</div>
+<div class = "graphs">
+  <div id="columnchart" style="width: 100%; height: 90%;"></div>
+</div>
+</div>
+</div>
+
+</ul>
+<script>
+
+function opentab(evt, tabname) {
+  document.getElementById(tabname).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html> 

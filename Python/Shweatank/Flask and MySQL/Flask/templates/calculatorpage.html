@@ -1,0 +1,23 @@
+<html>
+  <body>
+    
+      <h1>Calculator</h1>
+      
+      <form action="" method="post">
+        <tr>Value of X:</tr>
+        <input type="text" name="x" value="{{
+          request.form.x }}">
+
+        <tr>Value of Y</tr>  
+         <input type="text" name="y" value="{{
+          request.form.y }}"><br><br>
+          <tr>Operator:</tr>  
+          <input type="text" name="operator" value="{{
+           request.form.operator }}">        
+        <input type="submit" value="Calculate">
+        <h2>Answer:</h2>
+      </form>
+      <p>{{request.form.x}} {{request.form.operator}} {{request.form.y}} = {{answer}}</p>
+
+  </body>
+</html>

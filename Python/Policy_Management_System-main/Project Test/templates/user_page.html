@@ -1,0 +1,77 @@
+<html>
+  <head>   
+    <title> Sanlam Policy Manager </title> 
+    <img src = "static/logo.png" alt = "Sanlam Logo" style="height: 100px; width: 300px; padding-left: 10px"/>
+  </head>
+</html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type = "text/javascript" src = {{url_for('static', filename = 'functions.js')}}></script>
+    <link rel= "stylesheet" href="{{url_for("static", filename = "style.css")}}">
+    
+  </head>
+
+<body style=  "background-color: #0074c9; ">
+  
+<ul>
+<div class="tab">
+  <form action = "/fetch_policies" method="post">
+    <button><i class="fa fa-folder-o"></i></button>
+    </form>
+    <form action = "/payments" method="post">
+    <button><i class="fa fa-credit-card"></i></button>
+  </form>
+      <form action = "/statistics" method="post">  
+    <button><i class="fa fa-bar-chart"></i></button>
+   </form>
+  
+    <br><br>  <br><br><br><br>  <br><br><br><br>  <br><br><br><br>  <br><br><br>
+
+    <button onclick="opentab(event, 'User')" id="defaultOpen"><i class="fa fa-user-o"></i></button>
+ 
+</div>
+
+
+<div id="User" class="tabcontent">
+  <h3>USER PROFILE</h3><br>
+  <div class="polcontent">
+  <form name = "update_form" action="/userprofile" method="post" onsubmit="return validate_new_credentials()" onkeyup="update_button_logic()">
+    <tr>Email</tr><br>
+    <input class="update" type="email" placeholder="new email address"  name="new_username" value="{{request.form.new_username }}"><br>
+     <div style="color: #0074c9">If you enter an email that Already Exists in Our System then Only Your Password will be updated ...</div>
+      <br> 
+      <br>
+    <tr>Password</tr> <br>
+     <input class="update" type="text" placeholder="new password" name="new_password" value="{{request.form.new_password }}">
+       <br><br>
+       <input id="updating_button" disabled class="updatebutton" type="submit" value="Update"/>
+     </form>
+     <br><br>       
+     <br><br>       
+     <br><br>       
+     <br><br>       
+     
+    <form class="logoutbutton" action="/logging_out" method="post" >
+      <input type="submit" value="Log Out">
+    </form>  
+  </div>
+</div>
+
+</ul>
+<script>
+
+function opentab(evt, tabname) {
+  document.getElementById(tabname).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <header>
+
+      <h1>Your Policies</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#">Policies</a></li>
+        <li><a href="#">Payment</a></li>
+        <li><a href="#">Expensis</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+
+    <section>
+        <form action="/uploaded" method="post" enctype="multipart/form-data">      
+        <input type="file" name="file" />
+        <input type="submit" value="Upload">
+      </form>
+
+      {% if policies %}
+      <p class="policies">{{ policies }}
+    {% endif %}
+    </section>
+
+
+
+
+
+      
+  </body>
+</html>
